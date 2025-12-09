@@ -6,52 +6,38 @@ impl Solution for Day01 {
     type Output = u32;
 
     fn part1(input: &str) -> Self::Output {
-        let mut out: u32 = 0;
+        let mut out: i32 = 0;
         let mut pos: i32 = 50;
         for line in input.lines() {
             let (dir_str, dist_str) = line.split_at(1);
             let dir: i32 = if dir_str == "L" { -1 } else { 1 };
-            let dist: u32 = dist_str.parse().unwrap();
+            let dist: i32 = dist_str.parse().unwrap();
 
-            pos += dir * (dist as i32);
-            while pos < 0 {
-                pos += 100;
-            }
-            while pos > 99 {
-                pos -= 100;
-            }
+            pos = (pos + dir * dist).rem_euclid(100);
 
             if pos == 0 {
                 out += 1;
             }
         }
-        out
+        out as u32
     }
 
     fn part2(input: &str) -> Self::Output {
-        let mut out: u32 = 0;
+        let mut out: i32 = 0;
         let mut pos: i32 = 50;
         for line in input.lines() {
             let (dir_str, dist_str) = line.split_at(1);
             let dir: i32 = if dir_str == "L" { -1 } else { 1 };
-            let dist: u32 = dist_str.parse().unwrap();
+            let dist: i32 = dist_str.parse().unwrap();
 
-            pos += dir * (dist as i32);
-            while pos < 0 {
-                pos += 100;
-                out += 1;
+            if dir == 1 {
+                out += (pos + dist) / 100;
+            } else {
+                out += ((100 - pos) % 100 + dist) / 100;
             }
-            while pos > 99 {
-                pos -= 100;
-                out += 1;
-            }
-            println!("{}: {} {}", line, pos, out);
+            pos = (pos + dir * dist).rem_euclid(100);
         }
-        // Edge case if we finish on 0
-        if pos == 0 {
-            out += 1;
-        }
-        out
+        out as u32
     }
 }
 
