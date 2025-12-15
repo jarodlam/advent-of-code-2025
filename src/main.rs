@@ -1,4 +1,4 @@
-use aoc2025::{day01::Day01, day02::Day02, day03::Day03, solution::solve};
+use aoc2025::{day01::Day01, day02::Day02, day03::Day03, day04::Day04, solution::solve};
 use clap::Parser;
 use colored::Colorize;
 use std::fs;
@@ -19,6 +19,7 @@ fn run_solution(day: u8, input: &str) -> (String, String) {
         1 => solve::<Day01>(input),
         2 => solve::<Day02>(input),
         3 => solve::<Day03>(input),
+        4 => solve::<Day04>(input),
         _ => panic!("invalid day: {}", day),
     }
 }
