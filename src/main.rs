@@ -1,5 +1,6 @@
 use aoc2025::{
-    day01::Day01, day02::Day02, day03::Day03, day04::Day04, day05::Day05, solution::solve,
+    day01::Day01, day02::Day02, day03::Day03, day04::Day04, day05::Day05, day06::Day06,
+    solution::solve,
 };
 use clap::Parser;
 use colored::Colorize;
@@ -23,6 +24,7 @@ fn run_solution(day: u8, input: &str) -> (String, String) {
         3 => solve::<Day03>(input),
         4 => solve::<Day04>(input),
         5 => solve::<Day05>(input),
+        6 => solve::<Day06>(input),
         _ => panic!("invalid day: {}", day),
     }
 }
